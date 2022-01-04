@@ -35,20 +35,23 @@ credit card make payment view history pay towards balance
 
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "test text")
 
-| HTTP Method | Endpoint                                                   | Functionality                                                          | Access  |
-|-------------|------------------------------------------------------------|------------------------------------------------------------------------|---------|
-| POST        | /auth/users/register                                       | Registers a user                                                       | PUBLIC  |
-| POST        | /auth/users/login                                          | Logs a user in                                                         | PUBLIC  |
-| GET         | /api/accounts                                              | Lists all Account groups                                               | PRIVATE |
-| POST        | /api/accounts                                              | Creates a new Account group                                            | PRIVATE |
-| GET         | /api/accounts/{accountsId}                                 | Gets a single Account group with the supplied id                       | PRIVATE |
-| PUT         | /api/accounts/{accountsId}                                 | Updates an Account group with the supplied id                          | PRIVATE |
-| DELETE      | /api/accounts/{accountsId}                                 | Deletes a account group with the supplied id                           | PRIVATE |
-| GET         | /api/accounts/{accountsId}/account                         | List all accounts in the given account group                           | PRIVATE |
-| POST        | /api/categories/{accountsId}/account                       | Creates a new account in the given Account group                       | PRIVATE |
-| GET         | /api/accounts/{accountsId}/account/{accountId}/transaction | Gets a List of transactions with the supplied accountsId and accountId | PRIVATE |
-| PUT         | /api/accounts/{accountsId}/account/{accountId}             | Updates an account in the given account group                          | PRIVATE |
-| DELETE      | /api/accounts/{accountsId}/account/{accountId}             | Deletes an account in the given Account group                          | PRIVATE |
+| HTTP Method | Endpoint                                             | Functionality                                                             | Access  |
+|-------------|------------------------------------------------------|---------------------------------------------------------------------------|---------|
+| POST        | /auth/users/register                                 | Registers a user                                                          | PUBLIC  |
+| POST        | /auth/users/login                                    | Logs a user in                                                            | PUBLIC  |
+| GET         | /api/account                                         | Lists all Account groups                                                  | PRIVATE |
+| POST        | /api/account                                         | Creates a new Account group                                               | PRIVATE |
+| GET         | /api/account/{accountId}                             | Gets a single Account group with the supplied id                          | PRIVATE |
+| PUT         | /api/account/{accountId}                             | Updates an Account group with the supplied id                             | PRIVATE |
+| DELETE      | /api/account/{accountId}                             | Deletes a account group with the supplied id                              | PRIVATE |
+| GET         | /api/account/{accountId}/transaction                 | List all transactions in the given account                                | PRIVATE |
+| POST        | /api/account/{accountId}/transaction                 | Creates a new transaction in the given Account                            | PRIVATE |
+| GET         | /api/account/{accountId}/transaction/{transactionId} | Gets a List of transactions with the supplied accountId and transactionId | PRIVATE |
+
+| HTTP Method | Endpoint                                             | Functionality                                                             | Access  |
+|-------------|------------------------------------------------------|---------------------------------------------------------------------------|---------|
+| PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
+| DELETE      | /api/account/{accountId}/transaction/{transactionId} | Deletes a transaction in the given group                                  | PRIVATE |
 
 
     
