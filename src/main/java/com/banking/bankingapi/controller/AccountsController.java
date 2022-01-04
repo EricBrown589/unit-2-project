@@ -1,4 +1,4 @@
-package com.banking.bankingapi.controllers;
+package com.banking.bankingapi.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
