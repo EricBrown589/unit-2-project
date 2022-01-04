@@ -1,8 +1,12 @@
 package com.banking.bankingapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import com.banking.bankingapi.model.Transaction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -19,9 +23,9 @@ public class Account {
   @Column
   private Long balance;
 
-//  @OneToMany(mappedBy = "account", orphanRemoval = true)
-//  @LazyCollection(LazyCollectionOption.FALSE)
-//  private List<Transaction> transactionListList;
+  @OneToMany(mappedBy = "account", orphanRemoval = true)
+  @LazyCollection(LazyCollectionOption.FALSE)
+  private List<Transaction> transactionList;
 
   // USER TABLE
   @ManyToOne
@@ -70,13 +74,13 @@ public class Account {
         '}';
   }
 
-//  public List<Transaction> getTransactionList() {
-//    return transactionList;
-//  }
-//
-//  public void setTransactionList(List<Transaction> transactionList) {
-//    this.transactionList = transactionList;
-//  }
+  public List<Transaction> getTransactionList() {
+    return transactionList;
+  }
+
+  public void setTransactionList(List<Transaction> transactionList) {
+    this.transactionList = transactionList;
+  }
 
   /********** user getters and setters **********/
   public User getUser() { return user; }
