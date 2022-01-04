@@ -1,12 +1,16 @@
 # Banking App
+
 by H. War, E. Brown, and K. Milligan.
 
 ## Project Description
-We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check their balance, deposit money, withdraw money, transfer money to another account (inside user profile), or delete an account from the user profile.
+
+We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check
+their balance, deposit money, withdraw money, transfer money to another account (inside user profile), or delete an
+account from the user profile.
 
 ### Stretch
-Add billing/ auto withdraw
 
+Add billing/ auto withdraw
 
 ## USER STORIES
 
@@ -22,18 +26,12 @@ Add billing/ auto withdraw
 - As a user, I want to Deposit money into my SELECTED account so I can add money to my account.
 - As a user, I want to Withdraw money from my account so I can spend it.
 
-
 ### Stretch Goal User Stories:
 
-As a user, I want to be able to set up an Autoloan (Stretch) account, so I can pay my car note.
-As a user, I want to be able to set up a Credit Card (Stretch) account, so I can build my credit history.
-    Opening Limit: $5000;
-    
+As a user, I want to be able to set up an Autoloan (Stretch) account, so I can pay my car note. As a user, I want to be
+able to set up a Credit Card (Stretch) account, so I can build my credit history. Opening Limit: $5000;
 
-credit card
-    make payment
-    view history
-    pay towards balance
+credit card make payment view history pay towards balance
 
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "test text")
 
@@ -51,3 +49,6 @@ credit card
 | GET         | /api/accounts/{accountsId}/account/{accountId}/transaction | Gets a List of transactions with the supplied accountsId and accountId | PRIVATE |
 | PUT         | /api/accounts/{accountsId}/account/{accountId}             | Updates an account in the given account group                          | PRIVATE |
 | DELETE      | /api/accounts/{accountsId}/account/{accountId}             | Deletes an account in the given Account group                          | PRIVATE |
+
+
+    

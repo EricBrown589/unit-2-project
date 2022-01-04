@@ -1,24 +1,19 @@
 # Project Evaluation
 
-Your instructors will evaluate your project and determine if it is complete or
-incomplete. We use the following rubric for our evaluation, but ultimately it is
-up to your instructors as to whether your project is complete or incomplete.
+Your instructors will evaluate your project and determine if it is complete or incomplete. We use the following rubric
+for our evaluation, but ultimately it is up to your instructors as to whether your project is complete or incomplete.
 
 We will evaluate your project according to the following criteria:
 
-- **Code Quality:** Is the code well formatted? Are variable and function names
-  semantic and sensible? Is the code easy to read and understand?
-- **Technical Requirements:** How does the project stack up to the requirements
-  for this project? Is the developer making use of the material we've covered in
-  a way that makes sense?
-- **Creativity & Interface:** Is the application easy to navigate? Does it work
-  well in every major browser? Is it responsive? Does it incorporate modern UI
-  Themes?
-- **Functionality:** Does the application work without errors or bugs? Does it
-  present a complete app, where every feature is fully implemented in a way that
-  makes sense?
-- **Presentation:** Is there adequate documentation? Is the repository well
-  organized and free of clutter?
+- **Code Quality:** Is the code well formatted? Are variable and function names semantic and sensible? Is the code easy
+  to read and understand?
+- **Technical Requirements:** How does the project stack up to the requirements for this project? Is the developer
+  making use of the material we've covered in a way that makes sense?
+- **Creativity & Interface:** Is the application easy to navigate? Does it work well in every major browser? Is it
+  responsive? Does it incorporate modern UI Themes?
+- **Functionality:** Does the application work without errors or bugs? Does it present a complete app, where every
+  feature is fully implemented in a way that makes sense?
+- **Presentation:** Is there adequate documentation? Is the repository well organized and free of clutter?
 
 ## Scoring
 
@@ -37,8 +32,7 @@ in every category.
 
 ## Hard Requirements
 
-The following requirements **_must_** be met in order for the project to be
-considered complete:
+The following requirements **_must_** be met in order for the project to be considered complete:
 
 - The project is deployed to GitHub Pages or a custom domain
 - The application renders in the browser and runs without errors
@@ -46,5 +40,5 @@ considered complete:
 
 ## Incomplete Projects
 
-Incomplete projects will be giving a 1 week extension. **Note that you are
-allowed one extension on only one of the four projects.**
+Incomplete projects will be giving a 1 week extension. **Note that you are allowed one extension on only one of the four
+projects.**
