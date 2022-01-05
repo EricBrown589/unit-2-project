@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/api/accounts")
+@RequestMapping(path = "/api")
 public class AccountsController {
 
     private AccountService accountService;
