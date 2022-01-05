@@ -6,6 +6,7 @@ import com.banking.bankingapi.model.Account;
 import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.repository.AccountRepository;
 //import com.banking.bankingapi.repository.TransactionRepository;
+import com.banking.bankingapi.repository.TransactionRepository;
 import com.banking.bankingapi.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class AccountService {
 
   private AccountRepository accountRepository;
-//  private TransactionRepository transactionRepository;
+ private TransactionRepository transactionRepository;
 
 
   private static final Logger LOGGER = Logger.getLogger(AccountService.class.getName());
@@ -31,10 +32,10 @@ public class AccountService {
   }
 
   // creates java bean (single instance)
-//  @Autowired
-//  public void setTransactionRepository(TransactionRepository transactionRepository) {
-//    this.transactionRepository = transactionRepository;
-//  }
+  @Autowired
+  public void setTransactionRepository(TransactionRepository transactionRepository) {
+    this.transactionRepository = transactionRepository;
+  }
 
 
 
@@ -121,22 +122,25 @@ public class AccountService {
 
   // ***************************** TRANSACTIONS *****************************
   // create single transaction and add to account
-//  public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
-//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    LOGGER.info("Calling createAccountTransaction from Service");
-//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-//    if (account == null) {
-//      throw new InformationNotFoundException(
-//          "account with id " + accountId + " does not belong to this user or account does not exist");
-//    }
-//    Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
-//    if (transaction != null) {
-//      throw new InformationExistsException("transaction with description " + transaction.getId() + " already exists");
-//    }
-//    transactionObject.setUser(userDetails.getUser());
-//    transactionObject.setAccount(account);
-//    return transactionRepository.save(transactionObject);
-//  }
+  public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
+    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    LOGGER.info("Calling createAccountTransaction from Service");
+    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+    if (account == null) {
+      throw new InformationNotFoundException(
+          "account with id " + accountId + " does not belong to this user or account does not exist");
+    }
+
+  Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
+    System.out.println(transaction);
+    if (transaction != null) {
+      throw new InformationExistsException("transaction with id " + transaction.getId() + " already exists");
+    }
+    transactionObject.setUser(userDetails.getUser());
+    transactionObject.setAccount(account);
+
+    return transactionRepository.save(transactionObject);
+  }
 
   public List<Transaction> getAccountTransactions(Long accountId) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

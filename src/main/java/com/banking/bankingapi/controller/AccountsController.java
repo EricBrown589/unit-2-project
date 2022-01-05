@@ -1,6 +1,7 @@
 package com.banking.bankingapi.controller;
 
 import com.banking.bankingapi.model.Account;
+import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +58,11 @@ public class AccountsController {
         LOGGER.info("Deleting Account...");
         return accountService.deleteAccount(accountId);
     }
-
+//    ************************ Transaction MAPPING -- DONE **************************
+//    ************************  **** TEST ENDPOINTS ****  **************************
+@PostMapping("/accounts/{accountId}/transaction")
+public Transaction createAccountTransaction(@PathVariable Long accountId, @RequestBody Transaction transactionObject ) {
+    LOGGER.info("Creating Account Transaction...");
+    return accountService.createAccountTransaction(accountId,transactionObject);
+}
 }
