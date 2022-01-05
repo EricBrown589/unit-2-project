@@ -60,11 +60,12 @@ public class AccountsController {
     }
 //    ************************ Transaction MAPPING -- DONE **************************
 //    ************************  **** TEST ENDPOINTS ****  **************************
-@PostMapping("/accounts/{accountId}/transaction")
-public Transaction createAccountTransaction(@PathVariable Long accountId, @RequestBody Transaction transactionObject ) {
-    LOGGER.info("Creating Account Transaction...");
-    return accountService.createAccountTransaction(accountId,transactionObject);
-}
+    @PostMapping("/accounts/{accountId}/transaction")
+    public Transaction createAccountTransaction(@PathVariable Long accountId, @RequestBody Transaction transactionObject ) {
+        LOGGER.info("Creating Account Transaction...");
+        return accountService.createAccountTransaction(accountId,transactionObject);
+    }
+
     @GetMapping("/accounts/{accountId}/transaction")
     public List<Transaction> getAccountTransactions(@PathVariable Long accountId ) {
         LOGGER.info("Account Transactions...");
@@ -75,5 +76,11 @@ public Transaction createAccountTransaction(@PathVariable Long accountId, @Reque
     public Transaction getAccountTransaction(@PathVariable Long accountId, @PathVariable Long transactionId) {
         LOGGER.info("Single Account Transaction...");
         return accountService.getAccountTransaction(accountId, transactionId);
+    }
+
+    @PostMapping("/accounts/{accountId}/transaction/{transactionId}")
+    public Transaction updateAccountTransaction(@PathVariable Long accountId, @PathVariable Long transactionId, @RequestBody Transaction transactionObject) {
+        LOGGER.info("Updating Account Transaction...");
+        return accountService.updateAccountTransaction(accountId, transactionId,transactionObject);
     }
 }

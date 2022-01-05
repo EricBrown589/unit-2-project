@@ -12,5 +12,11 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     Transaction findByIdAndUserId(Long accountId, Long UserId);
 
-  Optional<Transaction> findByAccountId(Long accountId);
+    Optional<Transaction> findByAccountId(Long accountId);
+
+//    Transaction findByIdAndUserIdAndTransactionId(Long accountId, Long UserId, Long transactionId);
+//    Transaction findByAccountIdAndId(Long accountId, Long transactionId);
+//    Transaction findByAccountIdAndIdAndDescription(Long accountId, Long transactionId, String transactionDescription);
+    Transaction findByIdAndUserIdAndIdIsNot(Long accountId, Long userId, Long transactionId);
 }
+

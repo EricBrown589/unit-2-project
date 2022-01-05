@@ -14,16 +14,16 @@ public class Transaction {
     private Long id;
 
     @Column
-    private String description;
+    private String description; //drinks with team
 
     @Column
-    private String type; // deposit or withdraw
+    private String type; // deposit or withdraw //withdrawl
 
     @Column
-    private String date;
+    private String date; // 1/5/22
 
     @Column
-    private double amount;
+    private double amount; // 40
 
     //  add user
     @ManyToOne
