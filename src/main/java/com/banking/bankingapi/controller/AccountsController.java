@@ -1,14 +1,30 @@
 package com.banking.bankingapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.banking.bankingapi.model.Account;
+import com.banking.bankingapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/hello")
+@RequestMapping(path = "/api/accounts")
 public class AccountsController {
-    @GetMapping
-    public String hello(){
-        return "Hello World!!!!!";
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
+
+    @GetMapping
+    public List<Account> getAccounts(){
+        return userService.getAccounts();
+    }
+
+    @PutMapping("/{accountId}")
+    public List<Account> getAccount(@PathVariable Long accountId)){
+        return userService.getAccount(accountId);
+    }
+
 }
