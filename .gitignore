@@ -4,8 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 pom.xml
+
 # Database
-src/main/resources/application-dev.properties
+application-dev.properties
+
 
 # STS
 .apt_generated

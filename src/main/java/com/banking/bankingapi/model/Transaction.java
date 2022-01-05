@@ -15,6 +15,8 @@ public class Transaction {
     @Column
     private String description;
 
+//    @Column
+//    private String type; // deposit or withdraw
 
     @Column
     private String date;
@@ -22,6 +24,17 @@ public class Transaction {
     @Column
     private double amount;
 
+    /********** add account **********/
+    // many categories belong to a one account
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    @JsonIgnore
+    private Account account;
+
+    /********** end of account **********/
+
+
+    public Transaction() {}
 
     public Long getId() {
         return id;
@@ -55,15 +68,6 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Transaction() {
-    }
 
-    /********** add account **********/
-    // many categories belong to a one account
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    @JsonIgnore
-    private Account account;
 
-    /********** end of account **********/
 }
