@@ -36,21 +36,16 @@ public class AccountService {
 //    this.transactionRepository = transactionRepository;
 //  }
 
-  // *** GET ALL CATEGORIES
-  public List<Account> getAccounts() {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("Retrieving Accounts From Service...");
-    System.out.println(userDetails.getUser().getId());
-    List<Account> categories = accountRepository.findByUserId(userDetails.getUser().getId());
-    if (categories.isEmpty()) {
-      throw new InformationNotFoundException("No Accounts found for user: " + userDetails.getUser().getId());
-    } else {
-      return categories;
-    }
-  }
 
-  //  *** GET SPECIFIC CATEGORY BY ID
-//  passed variable will point to an transaction in the database
+
+
+
+
+
+//  *******************   ACCOUNTS COMPLETED   *******************
+
+  //  *** GET SPECIFIC ACCOUNT BY ID
+  //  passed variable will point to and transaction in the database
   public Account getAccount(Long accountId) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     LOGGER.info("Calling `getAccount` from `AccountService`...");
@@ -62,8 +57,20 @@ public class AccountService {
     }
   }
 
-  //  *** CREATE CATEGORY
-//  http://localhost:9092/api/categories/
+  // *** GET ALL ACCOUNTS
+  public List<Account> getAccounts() {
+    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    LOGGER.info("Retrieving Accounts From Service...");
+    System.out.println(userDetails.getUser().getId());
+    List<Account> accounts = accountRepository.findByUserId(userDetails.getUser().getId());
+    if (accounts.isEmpty()) {
+      throw new InformationNotFoundException("No Accounts found for user: " + userDetails.getUser().getId());
+    } else {
+      return accounts;
+    }
+  }
+
+  //  *** CREATE ACCOUNT
   public Account createAccount(Account accountObject) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     LOGGER.info("`AccountService` Creating Account....");
@@ -86,7 +93,7 @@ public class AccountService {
     if (account == null) {
       throw new InformationNotFoundException("account with id " + accountId + " not found");
     } else {
-      account.setBalance(accountObject.getBalance());
+      account.setName(accountObject.getName());
       account.setBalance(accountObject.getBalance());
       account.setUser(userDetails.getUser());
       return accountRepository.save(account);
@@ -106,8 +113,13 @@ public class AccountService {
       return "Account ID: " + accountId + " has been successfully deleted.";
     }
   }
+  //  *******************   ACCOUNTS COMPLETED   *******************
 
-  // ***************************** ITEMS *****************************
+
+
+
+
+  // ***************************** TRANSACTIONS *****************************
   // create single transaction and add to account
 //  public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
 //    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
