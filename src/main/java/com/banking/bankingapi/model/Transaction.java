@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "transaction")
 public class Transaction {
+    //    **************** DB Columns ****************
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,14 +16,20 @@ public class Transaction {
     @Column
     private String description;
 
-//    @Column
-//    private String type; // deposit or withdraw
+    @Column
+    private String type; // deposit or withdraw
 
     @Column
     private String date;
 
     @Column
     private double amount;
+
+    //  add user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     /********** add account **********/
     // many categories belong to a one account
@@ -34,7 +41,10 @@ public class Transaction {
     /********** end of account **********/
 
 
+//    **************** GETTERS & SETTERS ****************
+
     public Transaction() {}
+
 
     public Long getId() {
         return id;
@@ -50,6 +60,14 @@ public class Transaction {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDate() {
@@ -68,6 +86,20 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
 }

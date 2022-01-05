@@ -5,7 +5,7 @@ import com.banking.bankingapi.exception.InformationNotFoundException;
 import com.banking.bankingapi.model.Account;
 import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.repository.AccountRepository;
-import com.banking.bankingapi.repository.TransactionRepository;
+//import com.banking.bankingapi.repository.TransactionRepository;
 import com.banking.bankingapi.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,10 +19,10 @@ import java.util.logging.Logger;
 public class AccountService {
 
   private AccountRepository accountRepository;
-  private TransactionRepository transactionRepository;
+//  private TransactionRepository transactionRepository;
 
 
-  private static final Logger LOGGER = Logger.getLogger(AccountService.class.getDescription());
+  private static final Logger LOGGER = Logger.getLogger(AccountService.class.getName());
 
   @Autowired
   // creates a bean (single instance) of the account Repository to call and link the methods to the controller
@@ -31,10 +31,10 @@ public class AccountService {
   }
 
   // creates java bean (single instance)
-  @Autowired
-  public void setTransactionRepository(TransactionRepository transactionRepository) {
-    this.transactionRepository = transactionRepository;
-  }
+//  @Autowired
+//  public void setTransactionRepository(TransactionRepository transactionRepository) {
+//    this.transactionRepository = transactionRepository;
+//  }
 
   // *** GET ALL CATEGORIES
   public List<Account> getAccounts() {
@@ -67,9 +67,9 @@ public class AccountService {
   public Account createAccount(Account accountObject) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     LOGGER.info("`AccountService` Creating Account....");
-    Account account = accountRepository.findByUserIdAndDescription(userDetails.getUser().getId(), accountObject.getDescription());
+    Account account = accountRepository.findByIdAndUserId(userDetails.getUser().getId(), accountObject.getId());
     if(account != null) {
-      throw new InformationExistsException("Account Description Already In Use: " + account.getDescription());
+      throw new InformationExistsException("Account Id Already In Use: " + account.getId());
     } else {
       accountObject.setUser(userDetails.getUser()); // set account.user to userID
       return accountRepository.save(accountObject);
@@ -87,7 +87,7 @@ public class AccountService {
       throw new InformationNotFoundException("account with id " + accountId + " not found");
     } else {
       account.setBalance(accountObject.getBalance());
-      account.setDescription(accountObject.getDescription());
+      account.setBalance(accountObject.getBalance());
       account.setUser(userDetails.getUser());
       return accountRepository.save(account);
     }
@@ -109,22 +109,22 @@ public class AccountService {
 
   // ***************************** ITEMS *****************************
   // create single transaction and add to account
-  public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("Calling createAccountTransaction from Service");
-    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-    if (account == null) {
-      throw new InformationNotFoundException(
-          "account with id " + accountId + " not belongs to this user or account does not exist");
-    }
-    Transaction transaction = transactionRepository.findByDescriptionAndUserId(transactionObject.getDescription(), userDetails.getUser().getId());
-    if (transaction != null) {
-      throw new InformationExistsException("transaction with description " + transaction.getDescription() + " already exists");
-    }
-    transactionObject.setUser(userDetails.getUser());
-    transactionObject.setAccount(account);
-    return transactionRepository.save(transactionObject);
-  }
+//  public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
+//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    LOGGER.info("Calling createAccountTransaction from Service");
+//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+//    if (account == null) {
+//      throw new InformationNotFoundException(
+//          "account with id " + accountId + " does not belong to this user or account does not exist");
+//    }
+//    Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
+//    if (transaction != null) {
+//      throw new InformationExistsException("transaction with description " + transaction.getId() + " already exists");
+//    }
+//    transactionObject.setUser(userDetails.getUser());
+//    transactionObject.setAccount(account);
+//    return transactionRepository.save(transactionObject);
+//  }
 
   public List<Transaction> getAccountTransactions(Long accountId) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -138,57 +138,57 @@ public class AccountService {
     }
   }
 
-  public Transaction getAccountTransaction(Long accountId, Long transactionId) {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("Getting Account Transaction from Service...");
-    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-    if (account == null) {
-      throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
-    }
-    // find account, then stream to find (filter) transaction by transactionId and grab the first instance.
-    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
+//  public Transaction getAccountTransaction(Long accountId, Long transactionId) {
+//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    LOGGER.info("Getting Account Transaction from Service...");
+//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+//    if (account == null) {
+//      throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
+//    }
+//    // find account, then stream to find (filter) transaction by transactionId and grab the first instance.
+//    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
+//
+//    if (!transaction.isPresent()) {
+//      throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
+//    }
+//    return transaction.get();
+//  }
 
-    if (!transaction.isPresent()) {
-      throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
-    }
-    return transaction.get();
-  }
-
-  public Transaction updateAccountTransaction(Long accountId, Long transactionId, Transaction transactionObject) {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("Updating Transaction from Service...");
-    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-    if (account == null) {
-      throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
-    }
-    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
-      if (!transaction.isPresent()) {
-        throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
-      }
-      Transaction updateTransaction = transactionRepository.findByDescriptionAndUserIdAndIdIsNot(transactionObject.getDescription(), userDetails.getUser().getId(), transactionId);
-      if (updateTransaction != null) {
-        throw new InformationExistsException("Transaction: " + updateTransaction.getDescription() + " already exists.");
-      }
-      transaction.get().setId(transactionObject.getId());
-      transaction.get().setDescription(transactionObject.getDescription());
-      transaction.get().setDueDate(transactionObject.getDueDate());
-      return transactionRepository.save(transaction.get());
-  }
+//  public Transaction updateAccountTransaction(Long accountId, Long transactionId, Transaction transactionObject) {
+//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    LOGGER.info("Updating Transaction from Service...");
+//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+//    if (account == null) {
+//      throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
+//    }
+//    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
+//      if (!transaction.isPresent()) {
+//        throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
+//      }
+//      Transaction updateTransaction = transactionRepository.findByBalanceAndUserIdAndIdIsNot(transactionObject.getId(), userDetails.getUser().getId(), transactionId);
+//      if (updateTransaction != null) {
+//        throw new InformationExistsException("Transaction: " + updateTransaction.getId() + " already exists.");
+//      }
+//      transaction.get().setId(transactionObject.getId());
+//      transaction.get().setBalance(transactionObject.getBalance());
+//      transaction.get().setDueDate(transactionObject.getDueDate());
+//      return transactionRepository.save(transaction.get());
+//  }
 
   //  Delete Method to delete account by id
-  public void deleteTransaction(Long accountId, Long transactionId) {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("calling deleteAccount method from Service");
-    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-    if (account == null) {
-      throw new InformationNotFoundException("Account " + accountId + " Not Found... :(");
-    }
-    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
-    if (!transaction.isPresent()) {
-      throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
-    }
-    transactionRepository.deleteById(transactionId);
-    LOGGER.info("Transaction: " + transactionId + " Deleted.");
-  }
+//  public void deleteTransaction(Long accountId, Long transactionId) {
+//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    LOGGER.info("calling deleteAccount method from Service");
+//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+//    if (account == null) {
+//      throw new InformationNotFoundException("Account " + accountId + " Not Found... :(");
+//    }
+//    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
+//    if (!transaction.isPresent()) {
+//      throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
+//    }
+//    transactionRepository.deleteById(transactionId);
+//    LOGGER.info("Transaction: " + transactionId + " Deleted.");
+//  }
 
 }

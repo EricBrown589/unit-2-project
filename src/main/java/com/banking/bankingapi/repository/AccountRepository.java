@@ -10,7 +10,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
   List<Account> findByUserId(Long userId);
 
-  Account findByIdAndUserId(Long userId, Long categoryId);
+  Account findByIdAndUserId(Long userId, Long accountId);
 
 //  Account findByUserIdAndName(Long userId, String categoryName);
 }

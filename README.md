@@ -47,11 +47,7 @@ credit card make payment view history pay towards balance
 | GET         | /api/account/{accountId}/transaction                 | List all transactions in the given account                                | PRIVATE |
 | POST        | /api/account/{accountId}/transaction                 | Creates a new transaction in the given Account                            | PRIVATE |
 | GET         | /api/account/{accountId}/transaction/{transactionId} | Gets a List of transactions with the supplied accountId and transactionId | PRIVATE |
-
-| HTTP Method | Endpoint                                             | Functionality                                                             | Access  |
-|-------------|------------------------------------------------------|---------------------------------------------------------------------------|---------|
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
-| DELETE      | /api/account/{accountId}/transaction/{transactionId} | Deletes a transaction in the given group                                  | PRIVATE |
 
 
     
