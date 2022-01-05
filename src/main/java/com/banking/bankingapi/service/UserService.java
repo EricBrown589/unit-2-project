@@ -1,6 +1,6 @@
 package com.banking.bankingapi.service;
 
-import com.banking.bankingapi.exception.InformationExistException;
+import com.banking.bankingapi.exception.InformationExistsException;
 import com.banking.bankingapi.model.Request.LoginRequest;
 import com.banking.bankingapi.model.Response.LoginResponse;
 import com.banking.bankingapi.model.User;
@@ -45,7 +45,7 @@ public class UserService {
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
             return userRepository.save(userObject);
         } else {
-            throw new InformationExistException("user with email address " +
+            throw new InformationExistsException("user with email address " +
                     userObject.getEmailAddress() + " already exists");
         }
     }
