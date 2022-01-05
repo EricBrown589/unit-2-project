@@ -65,4 +65,9 @@ public Transaction createAccountTransaction(@PathVariable Long accountId, @Reque
     LOGGER.info("Creating Account Transaction...");
     return accountService.createAccountTransaction(accountId,transactionObject);
 }
+    @GetMapping("/accounts/{accountId}/transaction")
+    public List<Transaction> getAccountTransactions(@PathVariable Long accountId ) {
+        LOGGER.info("Account Transactions...");
+        return accountService.getAccountTransactions(accountId);
+    }
 }
