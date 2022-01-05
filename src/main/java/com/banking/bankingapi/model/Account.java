@@ -44,7 +44,6 @@ public class Account {
   public Long getId() {
     return id;
   }
-
   public void setId(Long id) {
     this.id = id;
   }
@@ -52,7 +51,6 @@ public class Account {
   public String getName() {
     return name;
   }
-
   public void setName(String name) {
     this.name = name;
   }
@@ -60,10 +58,21 @@ public class Account {
   public Double getBalance() {
     return balance;
   }
-
   public void setBalance(Double balance) {
     this.balance = balance;
   }
+
+  /********** transactionList getters and setters **********/
+  public List<Transaction> getTransactionList() {
+    return transactionList;
+  }
+  public void setTransactionList(List<Transaction> transactionList) {
+    this.transactionList = transactionList;
+  }
+
+  /********** user getters and setters **********/
+  public User getUser() { return user; }
+  public void setUser(User user) { this.user = user; }
 
   @Override
   public String toString() {
@@ -73,19 +82,4 @@ public class Account {
         ", balance='" + balance + '\'' +
         '}';
   }
-
-  public List<Transaction> getTransactionList() {
-    return transactionList;
-  }
-
-  public void setTransactionList(List<Transaction> transactionList) {
-    this.transactionList = transactionList;
-  }
-
-  /********** user getters and setters **********/
-  public User getUser() { return user; }
-
-  public void setUser(User user) { this.user = user; }
-  /********** end of user getters and setters **********/
-
 }

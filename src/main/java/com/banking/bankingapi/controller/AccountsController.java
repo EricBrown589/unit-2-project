@@ -21,8 +21,8 @@ public class AccountsController {
         this.accountService = accountService;
     }
 
-//    ************************ ACCOUNTS MAPPING **************************
-
+//    ************************ ACCOUNTS MAPPING -- DONE **************************
+//    ************************  **** TEST ENDPOINTS ****  **************************
     @GetMapping("/accounts")
     public List<Account> getAccounts() {
         LOGGER.info("Getting All Accounts...");
