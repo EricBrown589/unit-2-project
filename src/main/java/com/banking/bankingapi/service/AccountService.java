@@ -5,7 +5,6 @@ import com.banking.bankingapi.exception.InformationNotFoundException;
 import com.banking.bankingapi.model.Account;
 import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.repository.AccountRepository;
-//import com.banking.bankingapi.repository.TransactionRepository;
 import com.banking.bankingapi.repository.TransactionRepository;
 import com.banking.bankingapi.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,21 +153,21 @@ public class AccountService {
     }
   }
 
-//  public Transaction getAccountTransaction(Long accountId, Long transactionId) {
-//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    LOGGER.info("Getting Account Transaction from Service...");
-//    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-//    if (account == null) {
-//      throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
-//    }
-//    // find account, then stream to find (filter) transaction by transactionId and grab the first instance.
-//    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream().filter(p-> p.getId().equals(transactionId)).findFirst();
-//
-//    if (!transaction.isPresent()) {
-//      throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
-//    }
-//    return transaction.get();
-//  }
+  public Transaction getAccountTransaction(Long accountId, Long transactionId) {
+    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    LOGGER.info("Getting Account Transaction from Service...");
+    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+    if (account == null) {
+      throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
+    }
+    // find account, then stream to find (filter) transaction by transactionId and grab the first instance.
+    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream()
+            .filter(p-> p.getId().equals(transactionId)).findFirst();
+    if (!transaction.isPresent()) {
+      throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
+    }
+    return transaction.get();
+  }
 
 //  public Transaction updateAccountTransaction(Long accountId, Long transactionId, Transaction transactionObject) {
 //    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

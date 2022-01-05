@@ -70,4 +70,10 @@ public Transaction createAccountTransaction(@PathVariable Long accountId, @Reque
         LOGGER.info("Account Transactions...");
         return accountService.getAccountTransactions(accountId);
     }
+
+    @GetMapping("/accounts/{accountId}/transaction/{transactionId}")
+    public Transaction getAccountTransaction(@PathVariable Long accountId, @PathVariable Long transactionId) {
+        LOGGER.info("Single Account Transaction...");
+        return accountService.getAccountTransaction(accountId, transactionId);
+    }
 }
