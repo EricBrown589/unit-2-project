@@ -59,6 +59,8 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Account> accountList;
 
+
+
     public User() {
     }
 
