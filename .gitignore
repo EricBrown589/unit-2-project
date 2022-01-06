@@ -8,6 +8,7 @@ pom.xml
 
 # Database
 application-dev.properties
+/src/main/resources/application-dev.properties
 
 
 # STS
