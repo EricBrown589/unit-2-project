@@ -141,6 +141,14 @@ public class AccountService {
     if (transaction != null) {
       throw new InformationExistsException("transaction with id " + transaction.getId() + " already exists");
     }
+    // update account balance - check type of trans and amount
+    //    get account info;
+    //    account.balance()
+//    System.out.println(account.getBalance());
+//    if (transactionObject.type.toLowerCase() == "withdraw") { // check transaction type
+//      acount.setBalance(accountObject.get().getBalance() - transactionObject.get().getAmount()); // subtract transaction amt from acount balance
+//    }
+
     transactionObject.setUser(userDetails.getUser());
     transactionObject.setAccount(account);
 
