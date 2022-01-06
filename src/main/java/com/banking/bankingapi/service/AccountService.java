@@ -179,7 +179,7 @@ public class AccountService {
         User user = userDetails.getUser();
 
         // Take the current account balance from user Total Balance
-        double totalBalance = user.getTotalBalance();
+        double totalBalance = user.getTotalBalance(); // stream?
         // Get withdraw or deposit amount
         double transactionAmount = transactionObject.getAmount();
         /*
