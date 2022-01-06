@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 pom.xml
 *.xml
-.idea
+.idea/
 
 # Database
 application-dev.properties
