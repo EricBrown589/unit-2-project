@@ -57,6 +57,7 @@ public class AccountService {
         if (account == null) {
             throw new InformationNotFoundException("account with id " + accountId + " not found");
         } else {
+            updateTotalBalance();
             return account;
         }
     }
@@ -64,6 +65,7 @@ public class AccountService {
     // *** GET ALL ACCOUNTS
     public List<Account> getAccounts() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        updateTotalBalance();
         LOGGER.info("Retrieving Accounts From Service...");
         System.out.println(userDetails.getUser().getId());
         List<Account> accounts = accountRepository.findByUserId(userDetails.getUser().getId());
@@ -84,6 +86,7 @@ public class AccountService {
      * @return
      */
     public Account createAccount(Account accountObject) {
+        updateTotalBalance();
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("`AccountService` Creating Account....");
         User user = userDetails.getUser();
@@ -92,9 +95,7 @@ public class AccountService {
             throw new InformationExistsException("Account Id Already In Use: " + account.getId());
         } else {
             accountObject.setUser(userDetails.getUser()); // set account.user to userID
-            //update user balance
-            user.setTotalBalance(user.getTotalBalance() + accountObject.getBalance());
-            userRepository.save(user);
+            updateTotalBalance();
             return accountRepository.save(accountObject);
         }
     }
@@ -108,6 +109,7 @@ public class AccountService {
      * @return
      */
     public Account updateAccount(Long accountId, Account accountObject) {
+        updateTotalBalance();
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("calling updateAccount method from Service");
         Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
@@ -115,13 +117,6 @@ public class AccountService {
         if (account == null) {
             throw new InformationNotFoundException("account with id " + accountId + " not found");
         } else {
-            // update the user Total Balance
-            User user = userDetails.getUser();
-            // Take the current account balance from user Total Balance
-            user.setTotalBalance(user.getTotalBalance() - account.getBalance());
-            // Add the new account balance to user Total Balance
-            user.setTotalBalance(user.getTotalBalance() + accountObject.getBalance());
-            userRepository.save(user);
             account.setName(accountObject.getName());
             account.setBalance(accountObject.getBalance());
             account.setUser(userDetails.getUser());
@@ -131,6 +126,7 @@ public class AccountService {
 
     //  Delete Method to delete account by id
     public String deleteAccount(Long accountId) {
+        updateTotalBalance();
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("calling deleteAccount method from Service");
         Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
@@ -144,6 +140,7 @@ public class AccountService {
             userRepository.save(user);
             // **** DeleteById() ****
             accountRepository.deleteById(accountId);
+            updateTotalBalance();
             return "Account ID: " + accountId + " has been successfully deleted.";
         }
     }
@@ -175,10 +172,10 @@ public class AccountService {
         // update account balance - check type of trans and amount
         //    get account info;
         //    account.balance()
-
+        updateTotalBalance();
         User user = userDetails.getUser();
 
-        // Take the current account balance from user Total Balance
+
         double totalBalance = user.getTotalBalance(); // stream?
         // Get withdraw or deposit amount
         double transactionAmount = transactionObject.getAmount();
@@ -191,18 +188,13 @@ public class AccountService {
             if (transactionAmount < account.getBalance()) {
                 account.setBalance(account.getBalance() - transactionObject.getAmount());
                 accountRepository.save(account);
-                // update the user Total Balance
-                // Take the current account balance from user Total Balance
-                user.setTotalBalance(user.getTotalBalance() - account.getBalance());
-                userRepository.save(user);
+
             }// check if balance less than all total balance of all accounts
             else if (transactionAmount < totalBalance) {
 
                 double amountLeftToWithdraw = transactionAmount - account.getBalance();
                 // update the user Total Balance
                 // Take the current account balance from user Total Balance
-                user.setTotalBalance(user.getTotalBalance() - account.getBalance());
-                userRepository.save(user);
 
                 account.setBalance(0.0);
                 accountRepository.save(account);
@@ -212,11 +204,8 @@ public class AccountService {
                 int i = 0;
                 while (amountLeftToWithdraw > 0 && i < accounts.size()) {
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
-                        // update the user Total Balance
-                        // Take the current account balance from user Total Balance
-                        user.setTotalBalance(user.getTotalBalance() - amountLeftToWithdraw);
-                        userRepository.save(user);
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
+                        updateTotalBalance();
                         // save
                         accountRepository.save(accounts.get(i));
 
@@ -224,13 +213,13 @@ public class AccountService {
 
                     } else {
                         // Take the current account balance from user Total Balance
-                        user.setTotalBalance(user.getTotalBalance() - amountLeftToWithdraw);
                         amountLeftToWithdraw = amountLeftToWithdraw - accounts.get(i).getBalance();
-                        userRepository.save(user);
                         accounts.get(i).setBalance(0.0);
                         accountRepository.save(accounts.get(i));
+                        updateTotalBalance();
                     }
                     i++;
+                    updateTotalBalance();
                 }
 
             } else {
@@ -242,10 +231,12 @@ public class AccountService {
             userRepository.save(user);
             account.setBalance(account.getBalance() + transactionObject.getAmount()); // addition transaction amt from account balance
             accountRepository.save(account);
+            updateTotalBalance();
         }
 
         transactionObject.setUser(userDetails.getUser());
         transactionObject.setAccount(account);
+        updateTotalBalance();
 
         return transactionRepository.save(transactionObject);
     }
@@ -302,6 +293,7 @@ public class AccountService {
     public Transaction updateAccountTransaction(Long accountId, Long transactionId, Transaction transactionObject) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("Updating Transaction from Service...");
+        updateTotalBalance();
         Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
         if (account == null) {
             throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
@@ -319,4 +311,20 @@ public class AccountService {
         return transactionRepository.save(transaction);
     }
 
+    /**
+     * <h1> Update totatl balance of currentUser</h1>
+     * @return
+     */
+  User updateTotalBalance(){
+      MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      LOGGER.info("Updating Transaction from Service...");
+      User user = userDetails.getUser();
+      List <Account> accounts = user.getAccountList();
+      double total = 0.0;
+      for(int i = 0;i< accounts.size(); i++){
+         total += accounts.get(i).getBalance();
+      }
+     user.setTotalBalance(total);
+    return userRepository.save(user);
+  }
 }
