@@ -21,7 +21,7 @@ public class Account {
   private String name;
 
   @Column
-  private Double balance;
+  private double balance;
 
   @OneToMany(mappedBy = "account", orphanRemoval = true)
   @LazyCollection(LazyCollectionOption.FALSE)
@@ -33,7 +33,7 @@ public class Account {
   @JsonIgnore
   private User user;
 
-  public Account(Long id, String name, Double balance) {
+  public Account(Long id, String name, double balance) {
     this.id = id;
     this.name = name;
     this.balance = balance;
@@ -55,10 +55,10 @@ public class Account {
     this.name = name;
   }
 
-  public Double getBalance() {
+  public double getBalance() {
     return balance;
   }
-  public void setBalance(Double balance) {
+  public void setBalance(double balance) {
     this.balance = balance;
   }
 

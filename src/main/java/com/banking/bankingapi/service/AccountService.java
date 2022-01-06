@@ -2,6 +2,7 @@ package com.banking.bankingapi.service;
 
 import com.banking.bankingapi.exception.InformationExistsException;
 import com.banking.bankingapi.exception.InformationNotFoundException;
+import com.banking.bankingapi.exception.InsufficientResources;
 import com.banking.bankingapi.model.Account;
 import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.repository.AccountRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.naming.InsufficientResourcesException;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -137,7 +139,6 @@ public class AccountService {
     }
 
   Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
-    System.out.println(transaction);
     if (transaction != null) {
       throw new InformationExistsException("transaction with id " + transaction.getId() + " already exists");
     }
@@ -145,9 +146,32 @@ public class AccountService {
     //    get account info;
     //    account.balance()
 //    System.out.println(account.getBalance());
-//    if (transactionObject.type.toLowerCase() == "withdraw") { // check transaction type
-//      acount.setBalance(accountObject.get().getBalance() - transactionObject.get().getAmount()); // subtract transaction amt from acount balance
-//    }
+    if (transactionObject.getType().toLowerCase().equals("withdraw")) { // check transaction type
+        // check if balance less than withdraw
+        // Get withdraw
+        double withdraw = transactionObject.getAmount();
+        double totalBalance = accountRepository.findAllBalanceById(accountId);
+
+      if(withdraw < account.getBalance()){
+          account.setBalance(account.getBalance() - transactionObject.getAmount());
+          accountRepository.save(account);
+      }// check if balance less than all total balance of all accounts
+      else if(withdraw < totalBalance){
+
+          double amountLeftToWithdraw = withdraw - account.getBalance();
+          account.setBalance(0.0);
+          accountRepository.save(account);
+          // check for any other balance
+          // loop in to the other account until all amountLeftToWithdraw reach
+      }
+      else{
+          throw new InsufficientResources("Balance Insufficient");
+      }
+        //save new balance to account
+    }
+      else if (transactionObject.getType().toLowerCase().equals("deposit")) { // check transaction type
+          account.setBalance(account.getBalance() + transactionObject.getAmount()); // addition transaction amt from account balance
+      }
 
     transactionObject.setUser(userDetails.getUser());
     transactionObject.setAccount(account);
