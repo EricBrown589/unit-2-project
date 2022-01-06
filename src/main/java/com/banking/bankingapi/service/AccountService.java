@@ -102,8 +102,8 @@ public class AccountService {
       throw new InformationNotFoundException("account with id " + accountId + " not found");
     } else {
       account.setName(accountObject.getName());
-      account.setBalance(accountObject.getBalance());
-      account.setUser(userDetails.getUser());
+//      account.setBalance(accountObject.getBalance());
+//      account.setUser(userDetails.getUser());
       return accountRepository.save(account);
     }
   }
@@ -150,20 +150,20 @@ public class AccountService {
         // check if balance less than withdraw
         // Get withdraw
         double withdraw = transactionObject.getAmount();
-        double totalBalance = accountRepository.findAllBalanceById(accountId);
+//        double totalBalance = accountRepository.findAllBalanceById(accountId);
 
       if(withdraw < account.getBalance()){
           account.setBalance(account.getBalance() - transactionObject.getAmount());
           accountRepository.save(account);
       }// check if balance less than all total balance of all accounts
-      else if(withdraw < totalBalance){
-
-          double amountLeftToWithdraw = withdraw - account.getBalance();
-          account.setBalance(0.0);
-          accountRepository.save(account);
-          // check for any other balance
-          // loop in to the other account until all amountLeftToWithdraw reach
-      }
+//      else if(withdraw < totalBalance){
+//
+//          double amountLeftToWithdraw = withdraw - account.getBalance();
+//          account.setBalance(0.0);
+//          accountRepository.save(account);
+//          // check for any other balance
+//          // loop in to the other account until all amountLeftToWithdraw reach
+//      }
       else{
           throw new InsufficientResources("Balance Insufficient");
       }
