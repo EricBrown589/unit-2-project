@@ -78,7 +78,7 @@ public class AccountsController {
         return accountService.getAccountTransaction(accountId, transactionId);
     }
 
-    @PostMapping("/accounts/{accountId}/transaction/{transactionId}")
+    @PutMapping("/accounts/{accountId}/transaction/{transactionId}")
     public Transaction updateAccountTransaction(@PathVariable Long accountId, @PathVariable Long transactionId, @RequestBody Transaction transactionObject) {
         LOGGER.info("Updating Account Transaction...");
         return accountService.updateAccountTransaction(accountId, transactionId,transactionObject);

@@ -83,8 +83,14 @@ public class AccountService {
     }
   }
 
-  //  account id comes from 'getAccount'
-  // passed from `PutMapping` into method as `value`, along with `body`
+
+    /**
+     * <h1> Update Account </h1>
+     * passed from `PutMapping` into method as `value`, along with `body`
+     * @param accountId
+     * @param accountObject
+     * @return
+     */
   public Account updateAccount(Long accountId, Account accountObject) {
     MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     LOGGER.info("calling updateAccount method from Service");
@@ -161,32 +167,41 @@ public class AccountService {
       throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
     }
     // find account, then stream to find (filter) transaction by transactionId and grab the first instance.
-    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream()
-            .filter(p-> p.getId().equals(transactionId)).findFirst();
-    if (!transaction.isPresent()) {
+    Transaction transaction = transactionRepository.findByIdAndAccountId(transactionId, accountId);
+    if (transaction == null) {
       throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
     }
-    return transaction.get();
+    return transaction;
   }
 
+    /**
+     * <h1> Update transaction</h1>
+     * <p> Use accounId and id of current user to check if it exists</p>
+     * <p> Use accounId and transaction id to check if it exists and take the first found</p>
+     * <p> Update and save the new description</p>
+     * @param accountId
+     * @param transactionId
+     * @param transactionObject
+     * @return
+     */
   public Transaction updateAccountTransaction(Long accountId, Long transactionId, Transaction transactionObject) {
-    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    LOGGER.info("Updating Transaction from Service...");
-    Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
-    if (account == null) {
-      throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
-    }
-    Optional<Transaction> transaction = transactionRepository.findByAccountId(accountId).stream()
-            .filter(p-> p.getId().equals(transactionId)).findFirst();
-      if (!transaction.isPresent()) {
-        throw new InformationNotFoundException("Transaction with ID " + transactionId + " Not Found... :(");
+      MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      LOGGER.info("Updating Transaction from Service...");
+      Account account = accountRepository.findByIdAndUserId(accountId, userDetails.getUser().getId());
+      if (account == null) {
+          throw new InformationNotFoundException("Account with ID " + accountId + " Not Found... :(");
       }
-      Transaction updateTransaction = transactionRepository.findByIdAndUserIdAndIdIsNot(accountId, userDetails.getUser().getId(), transactionId);
+      Transaction transaction = transactionRepository.findByIdAndAccountId(transactionId, accountId);
+      if (transaction == null) {
+          throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
+      }
+
+      Transaction updateTransaction = transactionRepository.findByIdAndUserIdAndAccountId(transactionId, userDetails.getUser().getId(), accountId);
       if (updateTransaction.getDescription().equals(transactionObject.getDescription())) {
         throw new InformationExistsException("Transaction already has this description.");
       }
-      transaction.get().setDescription(transactionObject.getDescription());
-      return transactionRepository.save(transaction.get());
+      transaction.setDescription(transactionObject.getDescription());
+      return transactionRepository.save(transaction);
   }
 
 }
