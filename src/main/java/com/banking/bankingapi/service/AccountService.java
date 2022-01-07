@@ -181,7 +181,7 @@ public class AccountService {
                 // loop in to the other account until all amountLeftToWithdraw reach
                 int i = 0;
                 while (amountLeftToWithdraw > 0 && i <= accounts.size()) { // *********
-                    System.out.println(accounts.size());
+                    System.out.println(accounts.size()); // remove me
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
                         accountRepository.save(accounts.get(i));
@@ -279,21 +279,4 @@ public class AccountService {
         transaction.setDescription(transactionObject.getDescription());
         return transactionRepository.save(transaction);
     }
-
-    /**
-     * <h1> Update totatl balance of currentUser</h1>
-     * @return
-     */
-//    User updateTotalBalance(){
-//      MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//      LOGGER.info("Updating Transaction from Service...");
-//      User user = userDetails.getUser();
-//      List <Account> accounts = user.getAccountList();
-//      double total = 0.0;
-//      for(int i = 0;i< accounts.size(); i++){
-//         total += accounts.get(i).getBalance();
-//      }
-//     user.setTotalBalance(total);
-//    return userRepository.save(user);
-//    }
 }
