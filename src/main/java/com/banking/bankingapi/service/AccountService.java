@@ -8,7 +8,6 @@ import com.banking.bankingapi.model.Transaction;
 import com.banking.bankingapi.model.User;
 import com.banking.bankingapi.repository.AccountRepository;
 import com.banking.bankingapi.repository.TransactionRepository;
-import com.banking.bankingapi.repository.UserRepository;
 import com.banking.bankingapi.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -69,6 +68,7 @@ public class AccountService {
         }
     }
 
+    // CREATE NEW ACCOUNT
     /**
      * <h1>CREATE ACCOUNT</h1>
      * <p>Check if the account is not already in the database</p>
@@ -77,7 +77,6 @@ public class AccountService {
      * @param accountObject
      * @return
      */
-    // CREATE NEW ACCOUNT
     public Account createAccount(Account accountObject) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("`AccountService` Creating Account....");
@@ -91,6 +90,7 @@ public class AccountService {
         }
     }
 
+    // Update Account NAME ONLY
     /**
      * <h1> Update Account </h1>
      * passed from `PutMapping` into method as `value`, along with `body`
@@ -112,7 +112,7 @@ public class AccountService {
         }
     }
 
-    //  Delete Method to delete account by id
+    //  Delete account by id
     /**
      *
      * @param accountId
@@ -132,6 +132,7 @@ public class AccountService {
         }
     }
 
+    // Create Transaction
     /**
      * <h1>create single transaction and add to account</h1>
      * @param accountId
@@ -163,8 +164,7 @@ public class AccountService {
                 account.setBalance(0.0);
                 accountRepository.save(account);
                 int i = 0;
-                while (amountLeftToWithdraw > 0 && i <= accounts.size()) { // *********
-                    System.out.println(accounts.size()); // remove me
+                while (amountLeftToWithdraw > 0 && i <= accounts.size()) {
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
                         accountRepository.save(accounts.get(i));
@@ -191,6 +191,7 @@ public class AccountService {
         return transactionRepository.save(transactionObject);
     }
 
+    // Get All Transactions Posted to Account
     /**
      *
      * @param accountId
@@ -207,6 +208,7 @@ public class AccountService {
         }
     }
 
+    // Get Transaction By Id
     /**
      *
      * @param accountId
@@ -228,6 +230,7 @@ public class AccountService {
         return transaction;
     }
 
+    // Update Transaction DESCRIPTION ONLY
     /**
      * <h1> Update transaction</h1>
      * <p> Use accounId and id of current user to check if it exists</p>
