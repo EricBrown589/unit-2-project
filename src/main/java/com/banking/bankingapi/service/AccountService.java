@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.InsufficientResourcesException;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -24,18 +22,14 @@ public class AccountService {
 
     private AccountRepository accountRepository;
     private TransactionRepository transactionRepository;
-    private UserRepository userRepository;
-
 
     private static final Logger LOGGER = Logger.getLogger(AccountService.class.getName());
 
     @Autowired
-    // creates a bean (single instance) of the account Repository to call and link the methods to the controller
     public void setAccountRepository(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
-    // creates java bean (single instance)
     @Autowired
     public void setTransactionRepository(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
@@ -46,10 +40,12 @@ public class AccountService {
         this.userRepository = userRepository;
     }
 
-//  *******************   ACCOUNTS COMPLETED   *******************
-
     //  *** GET SPECIFIC ACCOUNT BY ID
-    //  passed variable will point to and transaction in the database
+    /**
+     *
+     * @param accountId
+     * @return
+     */
     public Account getAccount(Long accountId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("Calling `getAccount` from `AccountService`...");
@@ -62,6 +58,10 @@ public class AccountService {
     }
 
     // *** GET ALL ACCOUNTS
+    /**
+     *
+     * @return
+     */
     public List<Account> getAccounts() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("Retrieving Accounts From Service...");
@@ -74,7 +74,6 @@ public class AccountService {
         }
     }
 
-
     /**
      * <h1>CREATE ACCOUNT</h1>
      * <p>Check if the account is not already in the database</p>
@@ -83,6 +82,7 @@ public class AccountService {
      * @param accountObject
      * @return
      */
+    // CREATE NEW ACCOUNT
     public Account createAccount(Account accountObject) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("`AccountService` Creating Account....");
@@ -118,6 +118,11 @@ public class AccountService {
     }
 
     //  Delete Method to delete account by id
+    /**
+     *
+     * @param accountId
+     * @return
+     */
     public String deleteAccount(Long accountId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("calling deleteAccount method from Service");
@@ -131,10 +136,6 @@ public class AccountService {
             return "Account ID: " + accountId + " has been successfully deleted.";
         }
     }
-    //  *******************   ACCOUNTS COMPLETED   *******************
-
-
-    // ***************************** TRANSACTIONS *****************************
 
     /**
      * <h1>create single transaction and add to account</h1>
@@ -142,7 +143,6 @@ public class AccountService {
      * @param transactionObject
      * @return
      */
-
     public Transaction createAccountTransaction(Long accountId, Transaction transactionObject) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         LOGGER.info("Calling createAccountTransaction from Service");
@@ -150,35 +150,23 @@ public class AccountService {
         if (account == null) {
             throw new InformationNotFoundException("account with id " + accountId + " does not belong to this user or account does not exist");
         }
-
         User user = userDetails.getUser();
-
         List<Account> accounts = user.getAccountList();
-//        **** STREAM ****
         double total = accounts.stream().map(x -> x.getBalance()).reduce((x, y) -> x + y).get();
-
         System.out.println("******************* Total Account Balance Is " + total + "*******************");
-
         Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
         if (transaction != null) {
             throw new InformationExistsException("transaction with id " + transaction.getId() + " already exists");
         }
-
         double transactionAmount = transactionObject.getAmount(); // Get withdraw or deposit amount
         if (transactionObject.getType().toLowerCase().equals("withdraw")) {
-
-            // check if balance less than withdraw
-            if (transactionAmount < account.getBalance()) {
+            if (transactionAmount < account.getBalance()) { // check if balance less than withdraw
                 account.setBalance(account.getBalance() - transactionObject.getAmount());
                 accountRepository.save(account);
-
             } else if (transactionAmount < total) { // check if balance less than all total balance of all accounts
                 double amountLeftToWithdraw = transactionAmount - account.getBalance();
                 account.setBalance(0.0);
                 accountRepository.save(account);
-// ****** ^^^^^ WORKING ^^^^^ ******
-                // check for any other balance
-                // loop in to the other account until all amountLeftToWithdraw reach
                 int i = 0;
                 while (amountLeftToWithdraw > 0 && i <= accounts.size()) { // *********
                     System.out.println(accounts.size()); // remove me
@@ -197,17 +185,14 @@ public class AccountService {
             } else {
                 throw new InsufficientResources("Balance Insufficient");
             }
-            //save new balance to account
         } else if (transactionObject.getType().toLowerCase().equals("deposit")) { // check transaction type
             account.setBalance(account.getBalance() + transactionObject.getAmount()); // addition transaction amt from account balance
             accountRepository.save(account);
-        } // else {
-//        throw new error for not deposit or not withdraw
-//        }
-
+        } else {
+            throw new InsufficientResources("Transaction must be `withdraw` or `deposit`. Transaction NOT Processed. Please Try Again.");
+        }
         transactionObject.setUser(userDetails.getUser());
         transactionObject.setAccount(account);
-
         return transactionRepository.save(transactionObject);
     }
 
@@ -223,7 +208,6 @@ public class AccountService {
         if (account == null) {
             throw new InformationNotFoundException("Account " + accountId + " Not Found... :(");
         } else {
-
             return account.getTransactionList();
         }
     }
@@ -271,7 +255,6 @@ public class AccountService {
         if (transaction == null) {
             throw new InformationNotFoundException("Transaction with ID: " + transactionId + " Not Found... :(");
         }
-
         Transaction updateTransaction = transactionRepository.findByIdAndUserIdAndAccountId(transactionId, userDetails.getUser().getId(), accountId);
         if (updateTransaction.getDescription().equals(transactionObject.getDescription())) {
             throw new InformationExistsException("Transaction already has this description.");
