@@ -2,6 +2,8 @@
 
 by H. War, E. Brown, and K. Milligan.
 
+# Minimum Viable Product Requirements
+
 ## Project Description
 
 We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check
@@ -31,8 +33,6 @@ Add billing/ auto withdraw
 As a user, I want to be able to set up an Autoloan (Stretch) account, so I can pay my car note. As a user, I want to be
 able to set up a Credit Card (Stretch) account, so I can build my credit history. Opening Limit: $5000;
 
-credit card make payment view history pay towards balance
-
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "test text")
 
 | HTTP Method | Endpoint                                             | Functionality                                                             | Access  |
@@ -50,4 +50,4 @@ credit card make payment view history pay towards balance
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
 
 
-    
+# Final Project End Results
