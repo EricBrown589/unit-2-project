@@ -55,6 +55,10 @@ public class Account {
     this.name = name;
   }
 
+  /**
+   * Get balance
+   * @return
+   */
   public double getBalance() {
     return balance;
   }
@@ -72,8 +76,17 @@ public class Account {
 
   /********** user getters and setters **********/
   public User getUser() { return user; }
+
+  /**
+   *
+   * @param user
+   */
   public void setUser(User user) { this.user = user; }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public String toString() {
     return "Account{" +
