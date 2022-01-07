@@ -113,8 +113,6 @@ public class AccountService {
             throw new InformationNotFoundException("account with id " + accountId + " not found");
         } else {
             account.setName(accountObject.getName());
-//            account.setBalance(accountObject.getBalance());
-//            account.setUser(userDetails.getUser());
             return accountRepository.save(account);
         }
     }
@@ -156,7 +154,9 @@ public class AccountService {
         User user = userDetails.getUser();
 
         List<Account> accounts = user.getAccountList();
-        double total = accounts.stream().map(x ->x.getBalance()).reduce((x,y)->x+y).get();
+//        **** STREAM ****
+        double total = accounts.stream().map(x -> x.getBalance()).reduce((x, y) -> x + y).get();
+
         System.out.println("******************* Total Account Balance Is " + total + "*******************");
 
         Transaction transaction = transactionRepository.findByIdAndUserId(transactionObject.getId(), userDetails.getUser().getId());
@@ -180,7 +180,8 @@ public class AccountService {
                 // check for any other balance
                 // loop in to the other account until all amountLeftToWithdraw reach
                 int i = 0;
-                while (amountLeftToWithdraw > 0 && i < accounts.size()) {
+                while (amountLeftToWithdraw > 0 && i <= accounts.size()) { // *********
+                    System.out.println(accounts.size());
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
                         accountRepository.save(accounts.get(i));
@@ -200,7 +201,9 @@ public class AccountService {
         } else if (transactionObject.getType().toLowerCase().equals("deposit")) { // check transaction type
             account.setBalance(account.getBalance() + transactionObject.getAmount()); // addition transaction amt from account balance
             accountRepository.save(account);
-        }
+        } // else {
+//        throw new error for not deposit or not withdraw
+//        }
 
         transactionObject.setUser(userDetails.getUser());
         transactionObject.setAccount(account);
