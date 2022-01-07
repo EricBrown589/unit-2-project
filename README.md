@@ -33,9 +33,11 @@ by H. War, E. Brown, and K. Milligan.
 
 ## Project Description
 
-We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check their balance, deposit money, withdraw money, transfer money to another account (inside user profile), or delete an account from the user profile.
+Banking API was built to help streamline your financial transactions. It has the ability to create and delete accounts, update account descriptions, create transactions that update your account balances, and the ability to pull money from other accounts to prevent over-drafting.
 
-
+### Technologies Used
+This API was developed across Linux, Windows, and MacOS using the IntelliJ IDE. It was written in Java using the SpringBoot Framework, and pulls additional dependencies using the Maven Package Manager. The database used is PostgreSQL, with
+This API is secured with JSON Web Tokens (JWT)
 
 
 ## USER STORIES
@@ -89,7 +91,8 @@ We want to build a SECURE (JWT) banking app where a user can create a profile, c
 | GET         | /api/account/{accountId}/transaction/{transactionId} | Gets a List of transactions with the supplied accountId and transactionId | PRIVATE |
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
 
-
+## Challenges
+.gitignore issues
 
 
 ### Coulda/Shoulda/Might
