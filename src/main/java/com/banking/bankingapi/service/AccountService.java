@@ -35,11 +35,6 @@ public class AccountService {
         this.transactionRepository = transactionRepository;
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     //  *** GET SPECIFIC ACCOUNT BY ID
     /**
      *
