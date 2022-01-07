@@ -39,6 +39,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * <h1> Create User </h1>
+     * <p>Check if the user does not exist</p>
+     * @param userObject
+     * @return
+     */
     public User createUser(User userObject){
         LOGGER.info("calling createUser method from service");
         if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
@@ -50,6 +56,11 @@ public class UserService {
         }
     }
 
+    /**
+     * <h1>Login the user</h1>
+     * @param loginRequest
+     * @return
+     */
     public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginRequest.getEmail(), loginRequest.getPassword()));
@@ -58,6 +69,11 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(jwt));
     }
 
+    /**
+     * <h1>Find user by email address</h1>
+     * @param email
+     * @return
+     */
     public User findUserByEmailAddress(String email) {
         return userRepository.findUserByEmailAddress(email);
     }
