@@ -1,4 +1,4 @@
-# Banking App
+# Banking API
 
 by H. War, E. Brown, and K. Milligan.
 
@@ -6,13 +6,12 @@ by H. War, E. Brown, and K. Milligan.
 
 ## Project Description
 
-We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check
-their balance, deposit money, withdraw money, transfer money to another account (inside user profile), or delete an
-account from the user profile.
+We want to build a SECURE (JWT) banking app where a user can create a profile, create an account (type in model), check their balance, deposit money, withdraw money, transfer money to another account (inside user profile), or delete an account from the user profile.
 
 ### Stretch
 
 Add billing/ auto withdraw
+
 
 ## USER STORIES
 
@@ -33,7 +32,18 @@ Add billing/ auto withdraw
 As a user, I want to be able to set up an Autoloan (Stretch) account, so I can pay my car note. As a user, I want to be
 able to set up a Credit Card (Stretch) account, so I can build my credit history. Opening Limit: $5000;
 
+## Entity Relationship Diagram 
+
+**Project Start:**
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "test text")
+
+**Project Completion:**
+![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png)
+
+
+## API Endpoints and Methods
+
+[***PostMan Request Documentation***](https://documenter.getpostman.com/view/13909137/UVXeqxVH)
 
 | HTTP Method | Endpoint                                             | Functionality                                                             | Access  |
 |-------------|------------------------------------------------------|---------------------------------------------------------------------------|---------|
@@ -50,7 +60,3 @@ able to set up a Credit Card (Stretch) account, so I can build my credit history
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
 
 
-# Final Project End Results
-
-
-![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png)
