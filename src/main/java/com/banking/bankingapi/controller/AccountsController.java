@@ -23,7 +23,6 @@ public class AccountsController {
     }
 
 //    ************************ ACCOUNTS MAPPING -- DONE **************************
-//    ************************  **** TEST ENDPOINTS ****  **************************
     @GetMapping("/accounts")
     public List<Account> getAccounts() {
         LOGGER.info("Getting All Accounts...");
@@ -58,8 +57,8 @@ public class AccountsController {
         LOGGER.info("Deleting Account...");
         return accountService.deleteAccount(accountId);
     }
+
 //    ************************ Transaction MAPPING -- DONE **************************
-//    ************************  **** TEST ENDPOINTS ****  **************************
     @PostMapping("/accounts/{accountId}/transaction")
     public Transaction createAccountTransaction(@PathVariable Long accountId, @RequestBody Transaction transactionObject ) {
         LOGGER.info("Creating Account Transaction...");

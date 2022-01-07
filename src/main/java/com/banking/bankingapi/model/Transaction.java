@@ -14,16 +14,16 @@ public class Transaction {
     private Long id;
 
     @Column
-    private String description; //drinks with team
+    private String description;
 
     @Column
-    private String type; // deposit or withdraw //withdrawl
+    private String type;
 
     @Column
-    private String date; // 1/5/22
+    private String date;
 
     @Column
-    private double amount; // 40
+    private double amount;
 
     //  add user
     @ManyToOne
@@ -94,9 +94,7 @@ public class Transaction {
         this.user = user;
     }
 
-    public Account getAccount() {
-        return account;
-    }
+    public Account getAccount() { return account; }
 
     public void setAccount(Account account) {
         this.account = account;
