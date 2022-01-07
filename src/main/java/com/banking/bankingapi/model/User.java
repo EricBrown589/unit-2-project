@@ -27,8 +27,7 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Account> accountList;
 
-    public User() {
-    }
+    public User() {}
 
     public Long getId() {
         return id;
