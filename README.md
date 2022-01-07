@@ -51,3 +51,6 @@ able to set up a Credit Card (Stretch) account, so I can build my credit history
 
 
 # Final Project End Results
+
+
+![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png)
