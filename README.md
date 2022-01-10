@@ -107,7 +107,7 @@ Banking API was built to help streamline your financial transactions. It has the
 
 ### USER STORIES
 
-- As a customer, I want to create a user profile so I can can set up online banking.
+- As a customer, I want to create a user so I can can set up online banking.
 - As a user, I want to Login so I can access my accounts.
 - As a user, I want to Logout so that I can keep my information secure(?)
 - As a user, I want to Check my Balance so I can know how much money I have.
