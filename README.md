@@ -34,8 +34,7 @@
   <p align="center">
     A Tool To Manage Your Finances
     <br />
-    <a href="https://github.com/Kieran815/unit-2-project/README.md"><strong>Explore the docs »</strong></a>
-    <br />
+    <!-- <a href="https://github.com/Kieran815/unit-2-project/README.md"><strong>Explore the docs »</strong></a> -->
     <br />
     <a href="https://github.com/Kieran815/unit-2-project/issues">Report Bug</a>
     ·
