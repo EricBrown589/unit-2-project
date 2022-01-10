@@ -1,35 +1,47 @@
-# Banking API
+[//]: # (# Banking API)
 
-by H. War, E. Brown, and K. Milligan.
+[//]: # ()
+[//]: # (by H. War, E. Brown, and K. Milligan.)
 
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # ()
+[//]: # (## Project Description)
 
+[//]: # ()
+[//]: # (<!-- PROJECT SHIELDS -->)
 
+[//]: # ()
+[//]: # ([![Contributors][contributors-shield]][contributors-url])
 
-## Project Description
+[//]: # ()
+[//]: # ([![Forks][forks-shield]][forks-url])
 
-<!-- PROJECT SHIELDS -->
+[//]: # ()
+[//]: # ([![Stargazers][stars-shield]][stars-url])
 
-[![Contributors][contributors-shield]][contributors-url]
+[//]: # ()
+[//]: # ([![Issues][issues-shield]][issues-url])
 
-[![Forks][forks-shield]][forks-url]
+[//]: # ()
+[//]: # ([![MIT License][license-shield]][license-url])
 
-[![Stargazers][stars-shield]][stars-url]
-
-[![Issues][issues-shield]][issues-url]
-
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[//]: # ([![LinkedIn][linkedin-shield]][linkedin-url])
 
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Kieran815/unit-2-project">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">Banking API</h3>
+[//]: # (  <a href="https://github.com/Kieran815/unit-2-project">)
+
+[//]: # (    <img src="images/logo.png" alt="Logo" width="80" height="80">)
+
+[//]: # (  </a>)
+
+<h1 align="center">Banking API</h1>
 
   <p align="center">
     project_description
@@ -54,7 +66,11 @@ by H. War, E. Brown, and K. Milligan.
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#technologies">Technologies</a></li>
+        <li><a href="#user-stories">User Stories</a></li>
+        <li><a href="#Entity Relationship Diagram">Entity Relationship Diagram</a></li>
+        <li><a href="#api-endpoints-and-methods">API Endpoints and Methods</a></li>
+        <li><a href="#challenges">Challenges</a></li>
       </ul>
     </li>
     <li>
@@ -80,11 +96,29 @@ by H. War, E. Brown, and K. Milligan.
 
 Banking API was built to help streamline your financial transactions. It has the ability to create and delete accounts, update account descriptions, create transactions that update your account balances, and the ability to pull money from other accounts to prevent over-drafting.
 
+### Technologies
+#### Platforms
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/)
+[![Mac OS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos/monterey/)
+#### IDE
+[![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)](https://www.jetbrains.com/idea/)
+#### Language & Frameworks
+[![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+[![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/)
+[![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)](https://maven.apache.org/)
+[![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)](https://jwt.io/)
+[![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
+[![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)](https://www.markdownguide.org/)
+[![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
+#### Communications & Support
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://slack.com/)
+[![Zoom](https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white)](https://zoom.us/)
+[![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)](https://stackoverflow.com/)
 
-
-
-
-## USER STORIES
+### USER STORIES
 
 - As a customer, I want to create a user profile so I can can set up online banking.
 - As a user, I want to Login so I can access my accounts.
@@ -97,7 +131,7 @@ Banking API was built to help streamline your financial transactions. It has the
 - As a user, I want to Withdraw money from my account so I can spend it.
 
 
-## Entity Relationship Diagram
+### Entity Relationship Diagram
 <div style="display: flex;">
 
 <div style="padding: 15px;">
@@ -117,7 +151,7 @@ Banking API was built to help streamline your financial transactions. It has the
 
 </div>
 
-## API Endpoints and Methods
+### API Endpoints and Methods
 
 [***PostMan Request Documentation***](https://documenter.getpostman.com/view/13909137/UVXeqxVH)
 
@@ -135,21 +169,18 @@ Banking API was built to help streamline your financial transactions. It has the
 | GET         | /api/account/{accountId}/transaction/{transactionId} | Gets a List of transactions with the supplied accountId and transactionId | PRIVATE |
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
 
-## Challenges
+### Challenges
 .gitignore issues
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `Kieran815`, `unit-2-project`, `NoLivesMatter42`, `kieran-milligan`, `email`, `email_client`, `Banking API`, `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+### Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This Program requires Java11, Spring, Maven,
 
-### Prerequisites
+#### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -157,18 +188,17 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+#### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/Kieran815/unit-2-project.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+3. Enter your API in `config.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
@@ -178,18 +208,16 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+### Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Please Review our _[Postman Documentation](https://documenter.getpostman.com/view/13909137/UVXeqxVH)_ for a complete list of Language Agnostic endpoint interactions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
 <!-- ROADMAP -->
-## Roadmap
+### Roadmap
 
 - [] User Login w/ JWT
   - [] Access to user accounts
@@ -200,7 +228,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+### Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -237,6 +265,10 @@ Distributed under the MIT License.
 ## Contact
 
 Kieran Milligan - [@NoLivesMatter42](https://twitter.com/NoLivesMatter42) - kieran.milligan@gmail.com
+
+Habsatou War - [@hwarba](https://twitter.com/hwarba) - hwar@cincinnatistate.edu
+
+Eric Brown - [@KiltedTyger]() - ericbrown589@yahoo.com
 
 Project Link: [https://github.com/Kieran815/unit-2-project](https://github.com/Kieran815/unit-2-project)
 
