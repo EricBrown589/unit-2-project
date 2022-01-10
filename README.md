@@ -265,7 +265,7 @@ Kieran Milligan - [@NoLivesMatter42](https://twitter.com/NoLivesMatter42) - kier
 
 Habsatou War - [@hwarba](https://twitter.com/hwarba) - hwar@cincinnatistate.edu
 
-Eric Brown - [@KiltedTyger]() - ericbrown589@yahoo.com
+Eric Brown - [@KiltedTyger](https://twitter.com/KiltedTyger) - ericbrown589@yahoo.com
 
 Project Link: [https://github.com/Kieran815/unit-2-project](https://github.com/Kieran815/unit-2-project)
 
