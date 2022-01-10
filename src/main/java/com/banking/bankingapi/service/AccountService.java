@@ -164,7 +164,7 @@ public class AccountService {
                 account.setBalance(0.0);
                 accountRepository.save(account);
                 int i = 0;
-                while (amountLeftToWithdraw > 0 && i <= accounts.size()) {
+                while (amountLeftToWithdraw != 0 && i <= accounts.size()) {
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
                         accountRepository.save(accounts.get(i));
