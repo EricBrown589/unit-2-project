@@ -121,14 +121,14 @@ Banking API was built to help streamline your financial transactions. It has the
 ### Entity Relationship Diagram
 <div style="display: flex;">
 
-<div style="padding: 15px;">
+<div style="padding: 15px; display: flex; flex-direction: column;">
 
 **Project Start:**
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "Project Start ERD")
 
 </div>
 
-<div style="padding: 15px;">
+<div style="padding: 15px; display: flex; flex-direction: column;">
 
 **Project Completion:**
 ![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png "Project Finish ERD")
@@ -172,27 +172,32 @@ This Program requires Java11, Spring, Maven,
 
 #### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Install Java 11 or Later JDK by following the instructions for [Linux](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8), [Windows](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA), or [iOS](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE).
+    ```sh
+      java --version
+    ```
+
+* Install Maven by following the instructions [here](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html). Then, check to verify the installation:
+    ```sh
+      mvn --version
+    ```
 
 #### Installation
 
-1. Install Java 11 or Later JDK by following the instructions for [Linux](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8), [Windows](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA), or [iOS](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE).
+1. Clone the repository from Github:
    ```sh
    git clone https://github.com/Kieran815/unit-2-project.git
    ```
-2. Install Maven by following the instructions [here](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html). Then, check to verify the installation:
-   ```sh
-   mvn --version
-   ```
-3. Download and install all pom.xml dependencies.
+   or
+    ```sh
+    git@github.com:Kieran815/unit-2-project.git
+    ```
+   
+2. Download and install all pom.xml dependencies.
 
-4. Run through IDE
+3. Run through IDE
 
-5. To test the API, install [Postman](https://www.postman.com/downloads/) and review our [Documentation](https://documenter.getpostman.com/view/13909137/UVXeqxVH)
+4. To test the API, install [Postman](https://www.postman.com/downloads/) and review our [Documentation](https://documenter.getpostman.com/view/13909137/UVXeqxVH)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
