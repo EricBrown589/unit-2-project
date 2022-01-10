@@ -1,15 +1,3 @@
-[//]: # (# Banking API)
-
-[//]: # ()
-[//]: # (by H. War, E. Brown, and K. Milligan.)
-
-[//]: # ()
-[//]: # ()
-[//]: # ()
-[//]: # ()
-[//]: # (## Project Description)
-
-[//]: # ()
 [//]: # (<!-- PROJECT SHIELDS -->)
 
 [//]: # ()
@@ -44,13 +32,11 @@
 <h1 align="center">Banking API</h1>
 
   <p align="center">
-    project_description
+    A Tool To Manage Your Finances
     <br />
-    <a href="https://github.com/Kieran815/unit-2-project"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Kieran815/unit-2-project/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Kieran815/unit-2-project">View Demo</a>
-    ·
     <a href="https://github.com/Kieran815/unit-2-project/issues">Report Bug</a>
     ·
     <a href="https://github.com/Kieran815/unit-2-project/issues">Request Feature</a>
@@ -70,6 +56,7 @@
         <li><a href="#user-stories">User Stories</a></li>
         <li><a href="#entity-relationship-diagram">Entity Relationship Diagram</a></li>
         <li><a href="#api-endpoints-and-methods">API Endpoints and Methods</a></li>
+        <li><a href="#project-board">Project Board</a></li>
         <li><a href="#challenges">Challenges</a></li>
       </ul>
     </li>
@@ -169,6 +156,9 @@ Banking API was built to help streamline your financial transactions. It has the
 | GET         | /api/account/{accountId}/transaction/{transactionId} | Gets a List of transactions with the supplied accountId and transactionId | PRIVATE |
 | PUT         | /api/account/{accountId}/transaction/{transactionId} | Updates a transaction in the given account                                | PRIVATE |
 
+### Project Board
+Explore our process on our [Banking API: Java Spring RESTful API Project](https://github.com/users/Kieran815/projects/1/views/1)
+
 ### Challenges
 .gitignore issues
 
@@ -190,18 +180,19 @@ This is an example of how to list things you need to use the software and how to
 
 #### Installation
 
-1. Clone the repo
+1. Install Java 11 or Later JDK by following the instructions for [Linux](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8), [Windows](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA), or [iOS](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE).
    ```sh
    git clone https://github.com/Kieran815/unit-2-project.git
    ```
-2. Install NPM packages
+2. Install Maven by following the instructions [here](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html). Then, check to verify the installation:
    ```sh
-   npm install
+   mvn --version
    ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+3. Download and install all pom.xml dependencies.
+
+4. Run through IDE
+
+5. To test the API, install [Postman](https://www.postman.com/downloads/) and review our [Documentation](https://documenter.getpostman.com/view/13909137/UVXeqxVH)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
