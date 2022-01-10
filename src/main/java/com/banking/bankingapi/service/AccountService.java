@@ -164,7 +164,8 @@ public class AccountService {
                 account.setBalance(0.0);
                 accountRepository.save(account);
                 int i = 0;
-                while (amountLeftToWithdraw > 0 && i < accounts.size()) {
+                while (amountLeftToWithdraw > 0 && i < accounts.size() - 1) {
+
                     if (accounts.get(i).getBalance() > amountLeftToWithdraw) {
                         accounts.get(i).setBalance(accounts.get(i).getBalance() - amountLeftToWithdraw);
                         accountRepository.save(accounts.get(i));
@@ -172,8 +173,8 @@ public class AccountService {
                     } else {
                         // Take the current account balance from user Total Balance
                         amountLeftToWithdraw = amountLeftToWithdraw - accounts.get(i).getBalance();
-                        accounts.get(i).setBalance(0.0);
-                        accountRepository.save(accounts.get(i));
+                        accounts.get(accounts.size() - 1).setBalance(0.0);
+                        accountRepository.save(accounts.get(accounts.size() - 1));
                     }
                     i++;
                 }

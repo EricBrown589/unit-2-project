@@ -192,7 +192,7 @@ This Program requires Java11, Spring, Maven,
     ```sh
     git@github.com:Kieran815/unit-2-project.git
     ```
-   
+
 2. Download and install all pom.xml dependencies.
 
 3. Run through IDE
@@ -216,8 +216,8 @@ Please Review our _[Postman Documentation](https://documenter.getpostman.com/vie
 ### Roadmap
 
 - [] User Login w/ JWT
-  - [] Access to user accounts
-      - [] Create Rolling Transactions based on value and balances.
+    - [] Access to user accounts
+        - [] Create Rolling Transactions based on value and balances.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
