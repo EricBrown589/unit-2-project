@@ -123,6 +123,7 @@ Banking API was built to help streamline your financial transactions. It has the
 <div style="padding: 15px; display: flex; flex-direction: column;">
 
 **Project Start:**
+
 ![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "Project Start ERD")
 
 </div>
@@ -130,6 +131,7 @@ Banking API was built to help streamline your financial transactions. It has the
 <div style="padding: 15px; display: flex; flex-direction: column;">
 
 **Project Completion:**
+
 ![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png "Project Finish ERD")
 
 </div>
