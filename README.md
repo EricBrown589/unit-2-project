@@ -68,7 +68,7 @@
       <ul>
         <li><a href="#technologies">Technologies</a></li>
         <li><a href="#user-stories">User Stories</a></li>
-        <li><a href="#Entity Relationship Diagram">Entity Relationship Diagram</a></li>
+        <li><a href="#entity-relationship-diagram">Entity Relationship Diagram</a></li>
         <li><a href="#api-endpoints-and-methods">API Endpoints and Methods</a></li>
         <li><a href="#challenges">Challenges</a></li>
       </ul>
@@ -137,14 +137,14 @@ Banking API was built to help streamline your financial transactions. It has the
 <div style="padding: 15px;">
 
 **Project Start:**
-![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "test text")
+![ERD Image](https://raw.githubusercontent.com/Kieran815/unit-2-project/main/banking%20app.drawio.png "Project Start ERD")
 
 </div>
 
 <div style="padding: 15px;">
 
 **Project Completion:**
-![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png)
+![Unit 2 Banking Api Project Entity Relationship Diagram](Unit2FinalERD.png "Project Finish ERD")
 
 </div>
 
@@ -253,6 +253,7 @@ auto withdraw
 
 - As a user, I want to be able to set up an Auto Loan account, so I can pay my car note.
 - As a user, I want to be able to set up a Credit Card account, so I can build my credit history.
+- As a user, I should be able to be assigned a profile for additional functionality over user groups (Admin Privileges).
 
 <!-- LICENSE -->
 ## License
